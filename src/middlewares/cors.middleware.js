@@ -1,7 +1,7 @@
-import ENVIROMENT from "../config/enviroment.js";
+import ENVIRONMENT from "../config/environment.js";
 
 const allowed_origins = [
-    ENVIROMENT.FRONTEND_URL,
+    ENVIRONMENT.FRONTEND_URL,
 ];
 
 export const customCorsMiddleware = (req, res, next) => {
