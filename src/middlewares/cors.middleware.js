@@ -1,7 +1,8 @@
 import ENVIRONMENT from "../config/environment.js";
 
 const allowed_origins = [
-    ENVIRONMENT.FRONTEND_URL,
+    'http://localhost:5173',
+    ENVIRONMENT.FRONTEND_URL
 ];
 
 export const customCorsMiddleware = (req, res, next) => {
