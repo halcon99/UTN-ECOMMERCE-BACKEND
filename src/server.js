@@ -5,6 +5,7 @@ import statusRouter from "./routes/status.route.js"
 import productRouter from "./routes/product.route.js"
 import authRouter from "./routes/auth.route.js"
 import { customCorsMiddleware } from "./middlewares/cors.middleware.js"
+import errorHandlerMiddleware from "./middlewares/errorHandler.middleware.js"
 
 const PORT= 4000
 const app= express()
@@ -19,7 +20,7 @@ app.use('/api/status', statusRouter)
 app.use('/api/auth', authRouter)
 app.use('/api/products', productRouter)
 
-//app.use(errorHandlerMiddleware)
+app.use(errorHandlerMiddleware)
 
 app.get('/', (req, res) => {
     res.send('Backend funcionando correctamente')
