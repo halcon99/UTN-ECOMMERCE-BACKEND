@@ -244,7 +244,7 @@ export const loginController= async (req,res)=>{
 export const forgotPasswordController= async(req,res)=>{
     try{
         const {email}= req.body
-
+       
         //buscar el usuario por mail
         const user= await User.findOne({email: email})
 
@@ -283,17 +283,17 @@ export const forgotPasswordController= async(req,res)=>{
 
 export const recoveryPasswordController= async (req,res)=>{
     try{
-        const {reset_token, form}= req.body
+        const {reset_token, password}= req.body
 
         const payload= jwt.verify(reset_token,ENVIRONMENT.SECRET_KEY)
         
         const user= await User.findOne({email: payload.email})
-
+    
         if(!user){
             return res.status(404)
         }
 
-        const password_hashed= await bcrypt.hash(form.password, 10)
+        const password_hashed= await bcrypt.hash(password, 10)
         user.password= password_hashed
         await user.save()
 
@@ -304,7 +304,7 @@ export const recoveryPasswordController= async (req,res)=>{
         .setMessage('Contraseña actualizada con exito!')
         
         .build()
-
+        
         return res.json(response)
     }catch(error){
         res.json(error)
